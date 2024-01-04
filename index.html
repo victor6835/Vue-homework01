@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home00</title>
+    <style>
+        * {
+            text-decoration: none;
+            color: #fff;
+            
+        }
+
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+
+            background-image: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);
+        }
+        .cards {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .cards .red {
+            background-color: #f43f5e;
+        }
+
+        .cards .blue {
+            background-color: #3b82f6;
+        }
+
+        .cards .green {
+            background-color: #22c55e;
+        }
+
+        .cards .card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            height: 100px;
+            width: 250px;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            transition: 400ms;
+        }
+
+        .cards .card p.tip {
+            font-size: 1em;
+            font-weight: 700;
+        }
+
+        .cards .card p.second-text {
+            font-size: .7em;
+            font-weight: 400;
+        }
+
+        .cards .card:hover {
+            transform: scale(1.1, 1.1);
+        }
+
+        .cards:hover>.card:not(:hover) {
+            filter: blur(10px);
+            transform: scale(0.9, 0.9);
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="cards">
+            <a href="/Vue-homework01/01_Vue_homework/order-confirm.html">
+                <div class="card red">
+                    <p class="tip">01_莊程富</p>
+                    <p class="second-text">Vue-homework-01</p>
+                </div>
+            </a>
+            <a href="/Vue-homework01/10_Vue_homework/Vue-reserve-system.html">
+                <div class="card blue">
+                    <p class="tip">10_陳柏廷</p>
+                    <p class="second-text">Vue-homework-01</p>
+                </div>
+            </a>
+            <a href="./Vue-homework01/30_Vue_homework/news.html">
+                <div class="card green">
+                    <p class="tip">30_陳曉穎</p>
+                    <p class="second-text">Vue-homework-01</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>
