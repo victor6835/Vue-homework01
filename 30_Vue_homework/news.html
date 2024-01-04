@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="news.css">
+  <title>Document</title>
+</head>
+<body>
+  <!-- {{}}插值與資料的聯繫 -->
+  <div id="app">
+    <h1>最新消息</h1>
+    <div class="main">
+      <div v-for="newsItem in news" class="news-box">
+        <div class="news-detail-container">
+          <p>{{ newsItem.date }}</p>
+          <p>{{ newsItem.title }}</p>
+          <p>{{ newsItem.content }}</p>
+        </div>
+        <div class="news-image-container">
+          <img :src="newsItem.image">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    let array = [1, 2, 3 ,4 ,5]
+    for (let index = 0; index<array.length; index++){
+      const element = array[index];
+      console.log(element);
+    }
+
+    for (const iterator of array) {
+      console.log(iterator + array)
+    }
+  </script>
+  
+  <script>
+    // 創建一個app應用，渲染在div名為#app
+    Vue.createApp({
+        data(){
+          return{
+            news : [
+              {
+                date:"2023/11/13",
+                title:"【導覽活動】",
+                content: "我們誠摯地邀請您參與我們即將舉辦的導覽活動，一場令人興奮的探索之旅等待著您！在這次導覽中，我們將一同踏足附近的自然寶地，發現大自然的奇妙之處。",
+                image: "image/news/camping01.jpg", 
+              },
+              {
+                date:"2023/11/15-2023/11/28",
+                title:"【動物認養】",
+                content: "推出營區野生動物認養計畫，讓喜歡動物的大小朋友可以把寵物帶回家。我們興奮地宣布推出營區野生動物認養計畫！這是一個令人振奮的機會，讓您與家人一同參與，將營區的可愛野生動物帶回家，共同分享愛與照顧。",
+                image: "image/news/camping02.jpg",
+              },
+
+              {
+                date:"2023/11/30-2023/12/25",
+                title:"【露營周邊商品】 ",
+                content: "2024年，野良露營與您共同踏上探險之旅，為了讓您的露營體驗更加豐富，我們自豪地宣布推出了一系列精心挑選的露營周邊商品！無論您是喜歡山中徒步、湖畔釣魚，還是喜歡在星空下營火晚會，我們都有適合您的商品。",
+                image: "image/news/camping03.jpg",
+              },
+
+              {
+                date:"2023/12/01-2024/01/15",
+                title:"【志工活動】 精美2024月曆桌曆，為生活添色。",
+                content: "徵集志願者參與清潔營區活動，共同維護環境。垃圾清理：協助清理營區內的垃圾，包括公共區域、花園和小徑。樹木修剪：對營區內的樹木進行修剪，為其提供更好的生長環境。花園美化：參與花園美化工作，種植花草，使營區更具生機。",
+                image: "image/news/camping04.jpg",
+              },
+            ]
+                      }
+                    }
+                  }).mount('#app')
+  </script>
+
+</body>
+</html>

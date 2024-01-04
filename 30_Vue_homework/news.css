@@ -1,0 +1,80 @@
+h1{
+  text-align: center;
+}
+
+.news-box{
+  display:flex;
+  margin: auto;
+  max-width: 900px;
+  position: relative;
+  justify-content: space-between;
+  padding: 40px;
+}
+
+@media (max-width: 768px) {
+  .news-box {
+    flex-direction: column;
+    }
+  }
+
+/* .news-box:not(:first-child)::after {
+  content: "";
+  max-width: 900px; 
+  border-top: 5px solid #726E6E; 
+  position: absolute;
+} */
+
+.news-image-container{
+  width: 300px;
+}
+
+/* 圖片本身需要設定大小依據(根據父元素或是有定絕對尺寸), 不然會直接呈現原始大小 */
+.news-image-container > img{
+  margin: 10px;
+  width: 100%;
+  height:200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+  @media (max-width: 768px) { 
+    .news-image-container {
+    width: 100%;
+  }
+  }
+
+
+@media (max-width: 768px) {
+  .news-image {
+    height: 35vw;
+    width: 100%;
+    margin:auto;
+    }
+  }
+
+.news-detail-container{
+  flex: 1;
+  min-width: 0;
+  margin-left: 5%;
+}
+
+@media (max-width: 768px) {
+  .news-detail-container {
+  width: 100%;
+  margin-left: 0;
+  }
+  }
+
+.news-date, 
+.news-content {
+  font-size: 16px;
+  margin-bottom: 1px;
+  line-height: 32px;
+}
+
+.news-title {
+  font-size: 20px;
+  margin-bottom:5px;
+  font-weight: bold;
+  line-height: 32px; 
+}
