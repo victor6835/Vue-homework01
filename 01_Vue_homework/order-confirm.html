@@ -30,14 +30,129 @@
                                 <th>{{productName}}</th>
                                 <th>{{productPrice}}</th>
                                 <th>{{productQuantity}}</th>
+                                <th>{{checkOnstock}}</th>
+                                <th>{{ProductEdit}}</th>
                             </tr>
-                            <tr>
-                                <td><img src="https://firebasestorage.googleapis.com/v0/b/garden2099-3ee26.appspot.com/o/Garden2099%2Fimg.png?alt=media&token=108f4127-0a2e-4924-a0d4-5868ead69d61" alt=""></td>
-                                <td>水耕蘿蔓</td>
-                                <td>$120</td>
-                                <td class="circleicon">20</td>
+                            <tr v-for="item in products" :key="item.id" :class="{'green': item.onStock}">
+                                
+                                <!-- 將product陣列裡的商品陳列在此 -->
+                                <td>
+                                    <img v-bind:src="item.imageUrl" alt="">
+                                </td>
+                                <td>{{item.name}}</td>
+                                <td>{{item.price}}</td>
+                                <td>{{item.quantity}}</td>
+                                <td>
+                                    <input type="checkbox" v-model="item.onStock">
+                                    {{item.onStock}}
+                                </td>
+                                <td>
+                                    <button type="button" class="btn-edit">編輯</button>
+                                </td>
                             </tr>
-                            <tr>
+                        </table>
+                        <form class="pay-info">
+                            <div class="up">
+                                <label for="productName" class="form-label">產品名稱</label>
+                                <input type="text" id="productName" class="form-label" v-model="temp.name">
+                            </div>
+                            <div class="up">
+                                <label for="productImage">產品圖片</label>
+                                <input type="text" id="productImage" class="form-control"  v-model="temp.imageUrl">
+                            </div>
+                            <div class="up">
+                                <label for="productPrice">單價</label>
+                                <input type="text" id="productPrice" class="form-control"  v-model="temp.price">
+                            </div>
+                            <div class="up">
+                                <label for="productQuantity">數量</label>
+                                <input type="text" id="productQuantity" class="form-control"  v-model="temp.quantity">
+                            </div>
+                            <button type="button" v-on:click="confirmEdit">上架</button>
+                        </form>
+                    </div>
+            </div>
+        </section>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.5/vue.global.min.js"></script>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                name: '水耕蘿蔓',
+                imageUrl: 'https://firebasestorage.googleapis.com/v0/b/garden2099-3ee26.appspot.com/o/Garden2099%2Fimg-1.png?alt=media&token=676baf97-8069-4f3c-8c5b-9c9bb5be3c51',
+                price: 120,
+                quantity: 20,
+                onStock: false,
+            },
+            {
+                id: 2,
+                name: '結球萵苣',
+                imageUrl: 'https://firebasestorage.googleapis.com/v0/b/garden2099-3ee26.appspot.com/o/Garden2099%2Fimg-2.png?alt=media&token=6679450e-6085-4816-b571-553e1db124b0',
+                price: 100,
+                quantity: 15,
+                onStock: false,
+            },
+            {
+                id: 3,
+                name: '營養起司',
+                imageUrl: 'https://firebasestorage.googleapis.com/v0/b/garden2099-3ee26.appspot.com/o/Garden2099%2Fimg-3.png?alt=media&token=dc02e3db-cab7-4ee7-8f61-acff651ae074',
+                price: 80,
+                quantity: 5,
+                onStock: false,
+            },
+            {
+                id: 4,
+                name: '科技番茄',
+                imageUrl: 'https://firebasestorage.googleapis.com/v0/b/garden2099-3ee26.appspot.com/o/Garden2099%2Fimg-4.png?alt=media&token=c1fc24fd-35cf-4692-9945-66cc82bda409',
+                price: 300,
+                quantity: 40,
+                onStock: false,
+            }
+        ];
+        const app = {
+            data() {
+                return {
+                    orderConfirmed: "感謝您的訂購",
+                    orderNumber: "1234567890",
+                    orderDetail: "您在Garden 2099的訂單已建立成功，以下是您的訂購明細。",
+                    productName: "產品名稱",
+                    productPrice: "單價",
+                    productQuantity: "數量",
+                    checkOnstock: "銷售狀態",
+                    ProductEdit:'修改',
+
+                    products: [],
+                    temp:{
+                        name: '科技番茄',
+                        imageUrl: 'https://firebasestorage.googleapis.com/v0/b/garden2099-3ee26.appspot.com/o/Garden2099%2Fimg-4.png?alt=media&token=c1fc24fd-35cf-4692-9945-66cc82bda409'
+                    }
+                }
+            },
+            methods: {
+                confirmEdit(){
+                    this.temp.id = new Date().getTime();
+                    this.temp.onStock = false;
+                    this.price = '';
+                    this.quantity = '';
+                    this.products.push(this.temp);
+                    this.temp = {};
+                    console.log(this.temp)
+                }
+            },
+            created() {
+                this.products = products;
+            }
+        };
+        Vue.createApp(app).mount('#wrap')
+    </script>
+</body>
+
+</html>
+
+
+<!-- <tr>
                                 <td><img src="https://firebasestorage.googleapis.com/v0/b/garden2099-3ee26.appspot.com/o/Garden2099%2Fimg-1.png?alt=media&token=676baf97-8069-4f3c-8c5b-9c9bb5be3c51" alt=""></td>
                                 <td>結球萵苣</td>
                                 <td>$120</td>
@@ -60,59 +175,4 @@
                                 <td>科技番茄</td>
                                 <td>$120</td>
                                 <td class="circleicon">20</td>
-                            </tr>
-                        </table>
-                        <div class="pay-info">
-                            <table>
-                                <tr>
-                                    <th>付款詳情</th>
-                                    <th></th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>商品總計:</td>
-                                    <td>$8787</td>
-                                </tr>
-                                <tr>
-                                    <td>運費:</td>
-                                    <td>$87</td>
-                                </tr>
-                                <tr>
-                                    <td class="total">合計:</td>
-                                    <td class="total">$878787</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="sent">
-                            <a href="#"><button>回首頁</button></a>
-                        </div>
-                    </div>
-            </div>
-        </section>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.5/vue.global.min.js"></script>
-
-    <script>
-        const app = {
-            data() {
-                return {
-                    orderConfirmed: "感謝您的訂購",
-                    orderNumber: "1234567890",
-                    orderDetail: "您在Garden 2099的訂單已建立成功，以下是您的訂購明細。",
-                    productName: "產品名稱",
-                    productPrice: "單價",
-                    productQuantity: "數量",
-
-                }
-            },
-            methods: {
-                
-            },
-            created() {
-                
-            }
-        };
-        Vue.createApp(app).mount('#wrap')
-    </script>
-</body>
-</html>
+                            </tr> -->
