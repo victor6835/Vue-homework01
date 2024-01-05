@@ -33,7 +33,7 @@
                                 <th>{{checkOnstock}}</th>
                                 <th>{{ProductEdit}}</th>
                             </tr>
-                            <tr v-for="item in products" :key="item.id" :class="{'green': item.onStock}">
+                            <tr v-for="item in products" v-bind:key="item.id" :class="{'green': item.onStock}">
                                 
                                 <!-- 將product陣列裡的商品陳列在此 -->
                                 <td>
